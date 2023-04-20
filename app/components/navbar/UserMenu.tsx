@@ -3,8 +3,9 @@ import { AiOutlineMenu} from 'react-icons/ai'
 import Avatar from '../Avatar';
 import { useCallback, useState } from 'react';
 import MenuItem from './MenuItem';
+import useRegisterModal from '@/app/hooks/useRegisterModal';
 const UserMenu = ( ) => {
-
+    const registerModal = useRegisterModal()
     const [isOpen, setIsOpen ] = useState(false)
 
     //Usamos callback para evitar re-renderização desnecessaria, assim otimizando a memoria da nossa aplicação
@@ -74,7 +75,7 @@ const UserMenu = ( ) => {
                                     label='Login'
                                  />
                                  <MenuItem
-                                    onClick={() => {}}
+                                    onClick={registerModal.onOpen}
                                     label='Sign up'
                                  />
                             </>
