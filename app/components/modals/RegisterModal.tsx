@@ -108,7 +108,6 @@ const RegisterModal = ( ) => {
                         Log in
                     </div>
                 </div>
-
             </div>
         </div>
     )
