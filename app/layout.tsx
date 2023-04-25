@@ -8,7 +8,7 @@ import LoginModal from './components/modals/loginModal'
 import getCurrentUser from './actions/getCurrentUser'
 
 export const metadata = {
-  title: 'Airbnb',
+  title: 'Airbnb | Iago Martins',
   description: 'Airbnb Clone',
 }
 

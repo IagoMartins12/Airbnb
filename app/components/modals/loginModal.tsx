@@ -23,8 +23,10 @@ import { useRouter } from 'next/navigation';
 
 const LoginModal = ( ) => {
     const router = useRouter()
+
     const registerModal = useRegisterModal( )
     const loginModal = useLoginModal()
+
     const [isLoading, setIsLoading ] = useState(false)
 
     const {
@@ -53,7 +55,7 @@ const LoginModal = ( ) => {
             setIsLoading(false)
 
             if (callback?.ok) {
-                toast.success('Logged in')
+                toast.success('Login feito com sucesso!')
                 router.refresh()
                 loginModal.onClose()
             }
@@ -68,8 +70,8 @@ const LoginModal = ( ) => {
     const bodyContent = (
         <div className='flex flex-col gap-4'>
             <Heading
-                title='Welcome back'
-                subtitle='Login to your account!'
+                title='Seja bem-vindo de volta'
+                subtitle='Faça o login para acessar sua conta!'
             /> 
             <Input
                 id='email'
@@ -82,7 +84,7 @@ const LoginModal = ( ) => {
              <Input
                 id='password'
                 type='password'
-                label='Password'
+                label='Senha'
                 disabled={isLoading}
                 register={register}
                 errors={errors}
@@ -96,25 +98,28 @@ const LoginModal = ( ) => {
             <hr />
             <Button 
                 outline
-                label='Continue with Google'
+                label='Continue com Google'
                 icon={FcGoogle}
                 onClick={( ) => { signIn('google')}}
             />
             <Button 
                 outline
-                label='Continue with GitHub'
+                label='Continue com GitHub'
                 icon={AiFillGithub}
                 onClick={( ) => signIn('github')}
             />
             <div className='text-neutral-500 text-center mt-4 font-light'>
                 <div className='justify-center flex flex-row items-center gap-2'>
                     <div>
-                        Already have an account?
+                        Não possui uma conta?
                     </div>
                     <div 
-                    onClick={registerModal.onClose}
+                    onClick= { () => {
+                        loginModal.onClose
+                        registerModal.onOpen
+                    }}
                     className='text-neutral-800 cursor-pointer hover:underline'>
-                        Log in
+                        Se cadastre
                     </div>
                 </div>
             </div>
