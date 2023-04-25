@@ -8,6 +8,8 @@ import CategoryInput from "../inputs/CategoryInput"
 import { FieldValues, useForm } from "react-hook-form"
 import CountrySelect from "../inputs/CountrySelect"
 import dynamic from "next/dynamic"
+import Counter from "../inputs/Counter"
+import ImageUpload from "../inputs/ImageUpload"
 
 enum STEPS {
     CATEGORY = 0,
@@ -21,7 +23,6 @@ enum STEPS {
 const RentModal = () => {
 
     const rentModal = useRentModal()
-
     const [step, setStep] = useState(STEPS.CATEGORY)
 
     const {
@@ -49,7 +50,12 @@ const RentModal = () => {
 
     const category = watch('category')
     const location = watch('location')
-    
+    const guestCount = watch('guestCount')
+    const roomCount = watch('roomCount')
+    const bathroomCount = watch('bathroomCount')
+    const imageSrc = watch('imageSrc')
+
+
     const Map = useMemo(() => dynamic(() => import('../Map'), {
         ssr:false
     }), [location])
@@ -124,6 +130,52 @@ const RentModal = () => {
                 />
             </div>
         )
+    }
+
+    if (step === STEPS.INFO) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+              <Heading
+                title="Comente sobre o seu imovel"
+                subtitle="Quais comodidades você tem?"
+              />
+              <Counter 
+                onChange={(value) => setCustomValue('guestCount', value)}
+                value={guestCount}
+                title="Convidados" 
+                subtitle="Quantos convidados você aceita?"
+              />
+              <hr />
+              <Counter 
+                onChange={(value) => setCustomValue('roomCount', value)}
+                value={roomCount}
+                title="Quartos" 
+                subtitle="Quantos quartos você possui?"
+              />
+              <hr />
+              <Counter 
+                onChange={(value) => setCustomValue('bathroomCount', value)}
+                value={bathroomCount}
+                title="Banheiros" 
+                subtitle="Quantos banheiros você possui?"
+              />
+            </div>
+          )
+    }
+
+    if (step === STEPS.IMAGES) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+              <Heading
+                title="Adicione fotos do seu imóvel"
+                subtitle="Mostre para os seus convidados como o seu imóvel se parece! "
+              />
+              <ImageUpload
+                onChange={(value) => setCustomValue('imageSrc', value)}
+                value={imageSrc}
+              />
+            </div>
+          )
     }
     return (
         <Modal 
