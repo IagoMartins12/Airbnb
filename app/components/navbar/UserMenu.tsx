@@ -8,6 +8,7 @@ import useRegisterModal from '@/app/hooks/useRegisterModal';
 import useLoginModal from '@/app/hooks/useLoginModal';
 import { signOut } from 'next-auth/react';
 import { SafeUser } from '@/app/types';
+import useRentModal from '@/app/hooks/useRentModal';
 
 interface UserMenuProps {
     currentUser?: SafeUser | null 
@@ -18,12 +19,22 @@ const UserMenu: React.FC<UserMenuProps> = ({
 
     const loginModal = useLoginModal()
     const registerModal = useRegisterModal()
+    const rentModal = useRentModal()
+
     const [isOpen, setIsOpen ] = useState(false)
 
     //Usamos callback para evitar re-renderização desnecessaria, assim otimizando a memoria da nossa aplicação
     const toggleOpen = useCallback(( ) => {
         setIsOpen((value) => !value)
     }, [])
+
+    const onRent = useCallback(( ) => {
+        if (!currentUser) {
+            return loginModal.onOpen()
+        }
+
+        rentModal.onOpen()
+    }, [currentUser, loginModal, rentModal])
 
     return (
         <div className="relative">
@@ -40,7 +51,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                     hover:bg-neutral-100
                     transition
                     cursor-pointer" 
-                onClick={( ) => { }}>
+                onClick={onRent}>
                     Anuncie seu espaço no Airbnb
                 </div>
                 <div 
@@ -96,7 +107,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                         label='Reservas'
                                     />
                                     <MenuItem
-                                        onClick={() => {}}
+                                        onClick={rentModal.onOpen}
                                         label='Airbnb my home'
                                     />
                                     <hr />

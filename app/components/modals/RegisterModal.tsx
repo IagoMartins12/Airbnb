@@ -51,6 +51,11 @@ const RegisterModal = ( ) => {
         })
     }
 
+    const toggle = useCallback(() => {
+        registerModal.onClose()
+        loginModal.onOpen()
+    }, [registerModal, loginModal])
+
     const bodyContent = (
         <div className='flex flex-col gap-4'>
             <Heading
@@ -106,10 +111,7 @@ const RegisterModal = ( ) => {
                         Ja possui conta?
                     </div>
                     <div 
-                    onClick={() => {
-                        registerModal.onClose
-                        loginModal.onOpen
-                    }}
+                    onClick={toggle}
                     className='text-neutral-800 cursor-pointer hover:underline'>
                         Faça o login
                     </div>
@@ -122,7 +124,7 @@ const RegisterModal = ( ) => {
             <Modal 
                 disabled={isLoading}
                 isOpen= {registerModal.isOpen}
-                title='Register'
+                title='Se cadastre'
                 actionLabel='Continue'
                 onClose={registerModal.onClose}
                 onSubmit={handleSubmit(onSubmit)}

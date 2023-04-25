@@ -1,7 +1,6 @@
 'use client';
 
 import { signIn } from 'next-auth/react'
-import axios from 'axios'; 
 import { AiFillGithub } from 'react-icons/ai';
 import { FcGoogle } from 'react-icons/fc';
 import { useCallback, useState } from 'react';
@@ -63,9 +62,14 @@ const LoginModal = ( ) => {
             if (callback?.error) {
                 toast.error("Opss! Ocorreu um erro ao realizar o login, tente novamente.")
             }
-        }
+            }
         ))
     }
+
+    const toggle = useCallback(() => {
+        loginModal.onClose()
+        registerModal.onOpen()
+    }, [loginModal, registerModal])
 
     const bodyContent = (
         <div className='flex flex-col gap-4'>
@@ -111,13 +115,10 @@ const LoginModal = ( ) => {
             <div className='text-neutral-500 text-center mt-4 font-light'>
                 <div className='justify-center flex flex-row items-center gap-2'>
                     <div>
-                        Não possui uma conta?
+                        Primeira vez usando Airbnb?
                     </div>
                     <div 
-                    onClick= { () => {
-                        loginModal.onClose
-                        registerModal.onOpen
-                    }}
+                    onClick= { toggle}
                     className='text-neutral-800 cursor-pointer hover:underline'>
                         Se cadastre
                     </div>
