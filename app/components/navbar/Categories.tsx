@@ -18,6 +18,7 @@ import { IoDiamond } from 'react-icons/io5';
 import { MdOutlineVilla } from 'react-icons/md';
 import CategoryBox from "../CategoryBox";
 import { usePathname, useSearchParams } from "next/navigation";
+import { AiOutlineCoffee, AiOutlineFire } from "react-icons/ai";
 
 export const categories = [
   {
@@ -94,6 +95,14 @@ export const categories = [
     label: 'Luxo',
     icon: IoDiamond,
     description: 'Está propriedade é nova e luxuosa!'
+  }, {
+    label: 'Pousadas',
+    icon: AiOutlineCoffee,
+    description: 'Está propriedade é uma pousada!'
+  },  {
+    label: 'Em alta',
+    icon: AiOutlineFire,
+    description: 'Está propriedade está em alta!'
   }
 ]
 

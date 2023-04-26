@@ -20,7 +20,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
   onChange,
   value
 }) => {
-
+  
   const handleUpload = useCallback((result: any) => {
     onChange(result.info.secure_url);
   }, [onChange]);
@@ -58,7 +58,7 @@ const ImageUpload: React.FC<ImageUploadProps> = ({
               size={50}
             />
             <div className="font-semibold text-lg">
-              Click para fazer o Upload.
+              Click para fazer o upload
             </div>
             {value && (
               <div className="

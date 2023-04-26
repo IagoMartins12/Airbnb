@@ -7,7 +7,7 @@ export async function POST(
   request: Request, 
 ) {
   const currentUser = await getCurrentUser();
-
+  console.log('chamou aqui')
   if (!currentUser) {
     return NextResponse.error();
   }
@@ -25,13 +25,6 @@ export async function POST(
     location,
     price,
    } = body;
-
-   //Verificando se não existe algum valor nulo
-  Object.keys(body).forEach((value: any) => {
-    if (!body[value]) {
-      NextResponse.error();
-    }
-  });
 
   //Criando o imovel no banco de dados
   const listing = await prisma.listing.create({
