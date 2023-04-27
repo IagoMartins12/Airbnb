@@ -13,7 +13,6 @@ import {
 
 import HeartButton from "../HeartButton";
 import Button from "../Button";
-import ClientOnly from "../ClientOnly";
 import { Reservation } from "@prisma/client";
 
 interface ListingCardProps {
@@ -116,10 +115,10 @@ const ListingCard: React.FC<ListingCardProps> = ({
         </div>
         <div className="flex flex-row items-center gap-1">
           <div className="font-semibold">
-            $ {price}
+            R$ {price}
           </div>
           {!reservation && (
-            <div className="font-light">night</div>
+            <div className="font-light">noite</div>
           )}
         </div>
         {onAction && actionLabel && (

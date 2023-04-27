@@ -108,7 +108,7 @@ const UserMenu: React.FC<UserMenuProps> = ({
                                     />
                                     <MenuItem
                                         onClick={rentModal.onOpen}
-                                        label='Airbnb my home'
+                                        label='Anuncie seu espaço'
                                     />
                                     <hr />
                                     <MenuItem

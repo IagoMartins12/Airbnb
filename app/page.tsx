@@ -33,8 +33,7 @@ export default async function Home() {
           2xl:grid-cols-6
           gap-8
         ">
-          <div>
-            {listings.map(( listing: any ) => {
+            {listings.map(( listing ) => {
               return (
                 <div>
                   <ListingCard 
@@ -44,7 +43,6 @@ export default async function Home() {
                   </div>
               )
             })}
-          </div>
         </div>
       </Container>
     </ClientOnly>
