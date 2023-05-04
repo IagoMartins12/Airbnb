@@ -111,7 +111,7 @@ const Modal: React.FC<ModalProps> = ({
               lg:h-auto
               md:h-auto
               border-0 
-              rounded-lg 
+              rounded-lg
               shadow-lg 
               relative 
               flex 

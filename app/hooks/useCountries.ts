@@ -1,11 +1,22 @@
 import countries from 'world-countries';
+import i18n from 'i18n-iso-countries'
+i18n.registerLocale(require("i18n-iso-countries/langs/pt.json"));
+
+const continentNames:any = {
+  Africa: "África",
+  Antarctic: "Antártida",
+  Asia: "Ásia",
+  Europe: "Europa",
+  Americas: "América",
+  Oceania: "Oceania",
+};
 
 const formattedCountries = countries.map((country) => ({
   value: country.cca2,
-  label: country.name.common,
+  label: i18n.getName(country.cca2, "pt"), // usa a biblioteca i18n-iso-countries para traduzir o nome do país em Português
   flag: country.flag,
   latlng: country.latlng,
-  region: country.region,
+  region: continentNames[country.region],
 }));
 
 const useCountries = () => {

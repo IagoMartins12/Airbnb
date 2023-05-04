@@ -90,7 +90,6 @@ const RentModal = () => {
   }
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log("cheguei aqui", STEPS)
     if (step !== STEPS.PRICE) {
      return onNext()
     }
@@ -99,7 +98,6 @@ const RentModal = () => {
 
     axios.post('/api/listings', data)
     .then(() => {
-      console.log("cheguei aqui")
       toast.success('Imóvel cadastrado!');
       router.refresh();
       reset();
