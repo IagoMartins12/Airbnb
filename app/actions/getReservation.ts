@@ -1,6 +1,5 @@
 import prisma from "@/app/libs/prismadb";
 
-//Uma action generica, que pode ser usada para caputrar as reservas, as viagens e as propriedades 
 interface IParams {
   listingId?: string;
   userId?: string;

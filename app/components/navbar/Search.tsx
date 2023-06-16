@@ -7,12 +7,10 @@ import { differenceInDays } from 'date-fns';
 
 import useSearchModal from '@/app/hooks/useSearchModal';
 import useCountries from '@/app/hooks/useCountries';
-import useRegisterModal from '@/app/hooks/useRegisterModal';
 
 
 const Search = () => {
   const searchModal = useSearchModal();
-  const registerModal = useRegisterModal()
   const params = useSearchParams();
   const { getByValue } = useCountries();
 
@@ -55,7 +53,7 @@ const Search = () => {
 
   return ( 
     <div
-      onClick={useSearchModal().onOpen}
+      onClick={searchModal.onOpen}
       className="
         border-[1px] 
         w-full 

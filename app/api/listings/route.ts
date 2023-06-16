@@ -7,12 +7,11 @@ export async function POST(
   request: Request, 
 ) {
   const currentUser = await getCurrentUser();
-  console.log('chamou aqui')
+
   if (!currentUser) {
     return NextResponse.error();
   }
 
-  //recebendo o body e desconstruindo para capturar as propriedades
   const body = await request.json();
   const { 
     title,
@@ -26,7 +25,12 @@ export async function POST(
     price,
    } = body;
 
-  //Criando o imovel no banco de dados
+  Object.keys(body).forEach((value: any) => {
+    if (!body[value]) {
+      NextResponse.error();
+    }
+  });
+
   const listing = await prisma.listing.create({
     data: {
       title,
